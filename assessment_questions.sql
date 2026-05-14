@@ -66,3 +66,14 @@ WHERE users.city = 'New York';
 -- 7. What courses are the Chicago Students taking?
 -- Hint: SUM(CASE WHEN learn_cpp NOT IN('') THEN 1 ELSE 0 END) AS "Chicago learners taking C++"
 -- ****************************************************************
+
+SELECT
+    SUM(CASE WHEN learn_cpp != '' THEN 1 ELSE 0 END) AS "Chicago learners taking C++",
+    SUM(CASE WHEN learn_sql != '' THEN 1 ELSE 0 END) AS "Chicago learners taking SQL",
+    SUM(CASE WHEN learn_html != '' THEN 1 ELSE 0 END) AS "Chicago learners taking HTML",
+    SUM(CASE WHEN learn_javascript != '' THEN 1 ELSE 0 END) AS "Chicago learners taking JavaScript",
+    SUM(CASE WHEN learn_java != '' THEN 1 ELSE 0 END) AS "Chicago learners taking Java"
+FROM users
+JOIN progress
+ON users.user_id = progress.user_id
+WHERE city = 'Chicago';
